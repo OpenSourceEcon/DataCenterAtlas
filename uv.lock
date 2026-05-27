@@ -369,6 +369,7 @@ dependencies = [
 
 [package.optional-dependencies]
 dev = [
+    { name = "ipykernel" },
     { name = "ipython" },
     { name = "jupyter" },
 ]
@@ -377,6 +378,7 @@ dev = [
 requires-dist = [
     { name = "bokeh", specifier = ">=3.1.1" },
     { name = "geopandas" },
+    { name = "ipykernel", marker = "extra == 'dev'" },
     { name = "ipython", marker = "extra == 'dev'" },
     { name = "jupyter", marker = "extra == 'dev'" },
     { name = "numpy" },
