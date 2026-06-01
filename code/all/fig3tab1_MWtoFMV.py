@@ -195,11 +195,11 @@ def make_mw_fmv_plot():
     # -------------------------------------------------------------------------
     # Make figure
     # -------------------------------------------------------------------------
-    # fig3_title = (
-    #     "Figure 3. US data centers by electrical capacity (MW) and fair " +
-    #     "market value (FMV)"
-    # )
-    fig3_title = ""
+    fig3_title = (
+        "Figure 3. US data centers by electrical capacity (MW) and fair " +
+        "market value (FMV)"
+    )
+    # fig3_title = ""
     fig3_filename = "fig3_MWtoFMV.html"
     output_file(
         os.path.join(images_dir, fig3_filename),
