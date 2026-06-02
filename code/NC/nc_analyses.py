@@ -31,40 +31,78 @@ rates_path = os.path.join(
 # [THE CODE ON THE NEXT 33 LINES AUGMENTS THE
 # 2025-2026_Tax_Rates_&_Effective_Tax_Rates.xlsx FILE AND CREATES THE
 # avg_proptax_rate_by_cnty_nc_2025_2026.csv file.]
-# Load data/rates_ut_2025.csv as pandas DataFrame rates_ut_2025_df and create
-# a new variable (rate_cnty_avg) that is the average property tax rate by
-# county (cnty_name) using groupby. The data start on row 5 (python index 4)
-# and the variable names are in that row. The data end in row `364 (python
-# index 1363).
-rates_nc_2025_2026_df = pd.read_csv(rates_path, skiprows=1, nrows=811)
-rates_nc_2025_2026_df
+# Load data/NC/2025-2026_Tax_Rates_&_Effective_Tax_Rates.xlsx as pandas
+# DataFrame rates_nc_2025_2026_df and create a new variable (rate_cnty_avg)
+# that is the average property tax rate by county (cnty_name) using groupby.
+# The data start on row 2 (python index 1) and the variable names are in that
+# row. The data end in row 812 (python index 811).
+rates_nc_2025_2026_df = pd.read_excel(rates_path, skiprows=1, nrows=810)
+# Rename the 11 columns
+rates_nc_2025_2026_df.columns = [
+    "cnty_name",
+    "mncpl_name",
+    "ratio_appr_cnty",
+    "sales_asses_ratio_2025",
+    "last_appr_year",
+    "prop_tax_rate_cnty",
+    "prop_tax_rate_mncpl",
+    "prop_tax_rate_comb",
+    "prop_tax_rate_eff_cnty",
+    "prop_tax_rate_eff_mncpl",
+    "prop_tax_rate_eff_comb",
+]
 
-# rates_nc_2025_2026_df["rate_cnty_avg"] = (
-#     rates_nc_2025_2026_df.groupby("cnty_name")["rate_final"].transform("mean")
-# )
-# # Save data from rates_ut_2025_df with new variable rate_cnty_avg to the same
-# # rows in the original rates_ut_2025.csv, preserving the header top 4 rows, but
-# # replacing the original data with this new data. The weighting here is equal
-# # across all rows. This would be better if we weighted by tax revenue in each
-# # tax area (row).
-# with open(rates_path, "r") as f:
-#     header_rows = [next(f) for _ in range(4)]
-# with open(rates_path, "w") as f:
-#     f.writelines(header_rows)
-# rates_ut_2025_df.to_csv(rates_path, index=False, mode="a", header=True)
+# Make sure that columns prop_tax_rate_mncpl, prop_tax_rate_comb,
+# prop_tax_rate_eff_mncpl, and prop_tax_rate_eff_comb are floats in which any
+# value "none" is "np.nan"
+for col in [
+    "prop_tax_rate_mncpl",
+    "prop_tax_rate_comb",
+    "prop_tax_rate_eff_mncpl",
+    "prop_tax_rate_eff_comb",
+]:
+    rates_nc_2025_2026_df[col] = pd.to_numeric(
+        rates_nc_2025_2026_df[col], errors="coerce"
+    )
 
-# # %%
-# # Create a DataFrame that is just the county varible (cnty_name) and the
-# # average property tax rate by county (rate_cnty_avg) that is just the one
-# # value for each county. Reset the index and print the DataFrame. Save the
-# # DataFrame as a csv file avg_proptax_rate_by_cnty_ut_2025.csv in the data/UT
-# # directory
-# cnty_avg_df = rates_ut_2025_df[
-#     ["cnty_name", "rate_cnty_avg"]
-# ].drop_duplicates().reset_index(drop=True)
-# print(cnty_avg_df)
-# cnty_avg_df.to_csv(
-#     data_dir / "avg_proptax_rate_by_cnty_ut_2025.csv", index=False
-# )
+# For municipalities (rows) for which the prop_tax_rate_mncpl variable is
+# np.nan, set the prop_tax_rate_comb variable to be the same as the
+# prop_tax_rate_cnty variable.
+rates_nc_2025_2026_df.loc[
+    rates_nc_2025_2026_df["prop_tax_rate_mncpl"].isna(), "prop_tax_rate_comb"
+] = rates_nc_2025_2026_df.loc[
+    rates_nc_2025_2026_df["prop_tax_rate_mncpl"].isna(), "prop_tax_rate_cnty"
+]
+# For municipalities (rows) for which the prop_tax_rate_eff_mncpl variable is
+# np.nan, set the prop_tax_rate_eff_comb variable to be the same as the
+# prop_tax_rate_eff_cnty variable.
+rates_nc_2025_2026_df.loc[
+    rates_nc_2025_2026_df["prop_tax_rate_eff_mncpl"].isna(),
+    "prop_tax_rate_eff_comb"
+] = rates_nc_2025_2026_df.loc[
+    rates_nc_2025_2026_df["prop_tax_rate_eff_mncpl"].isna(),
+    "prop_tax_rate_eff_cnty"
+]
+
+rates_nc_2025_2026_df["rate_cnty_avg"] = (
+    rates_nc_2025_2026_df.groupby(
+        "cnty_name"
+    )["prop_tax_rate_comb"].transform("mean")
+) / 100
+
+# %%
+# Create a DataFrame that is just the county varible (cnty_name) and the
+# average property tax rate by county (rate_cnty_avg) that is just the one
+# value for each county. Reset the index and print the DataFrame. Save the
+# DataFrame as a csv file avg_proptax_rate_by_cnty_nc_2025_2026.csv in the
+# data/NC directory
+cnty_avg_df = rates_nc_2025_2026_df[
+    ["cnty_name", "rate_cnty_avg"]
+].drop_duplicates().reset_index(drop=True)
+print(cnty_avg_df)
+cnty_avg_df.to_csv(
+    os.path.join(data_dir, "avg_proptax_rate_by_cnty_nc_2025_2026.csv"),
+    index=False
+)
 
 # %%
