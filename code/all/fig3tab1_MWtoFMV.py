@@ -75,7 +75,7 @@ def b_exp_c_exp_func_a_exp(
     return b_exp, c_exp
 
 
-def make_mw_fmv_plot():
+def make_mw_fmv_plot(title=True):
     """
     Create Bokeh scatter plot of electrical capacity (MW) and fair market value
     (FMV) along with linear regression line that estimates the realtionship.
@@ -195,11 +195,13 @@ def make_mw_fmv_plot():
     # -------------------------------------------------------------------------
     # Make figure
     # -------------------------------------------------------------------------
-    fig3_title = (
-        "Figure 3. US data centers by electrical capacity (MW) and fair " +
-        "market value (FMV)"
-    )
-    # fig3_title = ""
+    if title:
+        fig3_title = (
+            "Figure 3. US data centers by electrical capacity (MW) and fair " +
+            "market value (FMV)"
+        )
+    else:
+        fig3_title = ""
     fig3_filename = "fig3_MWtoFMV.html"
     output_file(
         os.path.join(images_dir, fig3_filename),
@@ -305,4 +307,4 @@ def make_mw_fmv_plot():
 
 
 if __name__ == "__main__":
-    make_mw_fmv_plot()
+    make_mw_fmv_plot(title=True)
