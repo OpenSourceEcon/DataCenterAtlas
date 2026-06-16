@@ -311,11 +311,11 @@ print(
     f"{cnty_prop_tax_rates_tx_2025_df['county_id'].duplicated().sum()}."
 )
 
-# Create tot_txbls_val variable as the maximum of the cnty_txbl_val, schl_txbl_val,
-# city_txbl_val, and spec_txbl_val variables.
-cnty_prop_tax_rates_tx_2025_df["tot_txbl_val"] = cnty_prop_tax_rates_tx_2025_df[[
-    "cnty_txbl_val", "schl_txbl_val", "city_txbl_val", "spec_txbl_val"
-]].max(axis=1)
+# # Create tot_txbls_val variable as the maximum of the cnty_txbl_val, schl_txbl_val,
+# # city_txbl_val, and spec_txbl_val variables.
+# cnty_prop_tax_rates_tx_2025_df["tot_txbl_val"] = cnty_prop_tax_rates_tx_2025_df[[
+#     "cnty_txbl_val", "schl_txbl_val", "city_txbl_val", "spec_txbl_val"
+# ]].max(axis=1)
 
 # Create tot_calculated_levy variable as the sum of the cnty_calculated_levy,
 # schl_calculated_levy, city_calculated_levy, and spec_calculated_levy
@@ -327,10 +327,10 @@ cnty_prop_tax_rates_tx_2025_df["tot_calculated_levy"] = (
     cnty_prop_tax_rates_tx_2025_df["spec_calculated_levy"]
 )
 # Create avg_eff_prop_tax_rate variable as tot_calculated_levy divided by
-# tot_txbl_val.
+# cnty_txbl_val.
 cnty_prop_tax_rates_tx_2025_df["avg_eff_prop_tax_rate"] = (
     cnty_prop_tax_rates_tx_2025_df["tot_calculated_levy"] /
-    cnty_prop_tax_rates_tx_2025_df["tot_txbl_val"]
+    cnty_prop_tax_rates_tx_2025_df["cnty_txbl_val"]
 )
 cnty_prop_tax_rates_tx_2025_df["avg_eff_prop_tax_rate_pct"] = (
     cnty_prop_tax_rates_tx_2025_df["avg_eff_prop_tax_rate"] * 100
@@ -387,3 +387,5 @@ for county_id, r in sorted(
     ].items(), key=lambda kv: -kv[1]
 )[:5]:
     print(f"  highest: county id {county_id}  {r:.2%}")
+
+# %%
