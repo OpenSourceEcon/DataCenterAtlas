@@ -1,0 +1,10 @@
+# Georgia data
+Georgia has the second most number of counties at 159, trailing only Texas which has 254 counties.
+
+Georgia property taxes are county-, municipality-, and special-district-based (no state property tax). The taxes are specified in mill rates or dollar of tax liability for $1,000 of taxable assessed value. The  See the Georgia Department of Revenue "[Property Tax Millage Rates](https://dor.georgia.gov/local-government-services/digest-compliance/property-tax-millage-rates)" page. All land, buildings, and business personal property (e.g., servers, networking equipment, cooling systems) are assessed at 40% of fair market value, and the business personal property is depreciated annually at specified schedules.
+
+The University of Georgia Institute of Government found that "local jurisdictions may offer incentives to encourage data centers to locate in a specific county or city." See Georgia Department of Audits and Accounts, "[Georgia Data Center Sales & Use Tax Exemption: DOAA summary of report prepared by the University of Georgia’s Carl Vinson Institute of Government (Institute)](https://www.audits2.ga.gov/reports/summaries/georgia-data-center-sales-use-tax-exemption)," (Dec. 24, 2025).
+
+Most residences in Georgia can qualify for and receive the homestead exemption, which is a $2,000 deduction from the assessed taxable value of the property. Residents over the age of 65 can get a $4,000 deduction from their assessed taxable value. There are some other smaller exemptions for residents under the homestead exemption. See Georgia Department of Revenue's "[Property Tax Homestead Exemptions](https://dor.georgia.gov/property-tax-homestead-exemptions)" page, accessed June 17, 2026. We estimate that this reduces residential property assessed taxable values to 39% of fair market value, a one-percentage-point decrease from the 40% ratio without the exemption.
+
+We calculate the total taxes levied by county from the "2025 Summary of Ad Valorem Taxes Levied Report.pdf"
