@@ -7,10 +7,23 @@ The University of Georgia Institute of Government found that "local jurisdiction
 
 Most residences in Georgia can qualify for and receive the homestead exemption, which is a $2,000 deduction from the assessed taxable value of the property. Residents over the age of 65 can get a $4,000 deduction from their assessed taxable value. There are some other smaller exemptions for residents under the homestead exemption. See Georgia Department of Revenue's "[Property Tax Homestead Exemptions](https://dor.georgia.gov/property-tax-homestead-exemptions)" page, accessed June 17, 2026. We estimate that this reduces residential property assessed taxable values to 39% of fair market value, a one-percentage-point decrease from the 40% ratio without the exemption.
 
-Let $L_i$ be the property tax liability for a particular property $i$, and let $FMV_i$ be the fair market value of that property. The effective property tax rate $\tau_{eff,i}$ for a particular property $i$ is the following equation:
+Let $L_{i,j}$ be the property tax liability for a particular property $i$ in county $j, and let $FMV_{i,j}$ be the fair market value of that property. The effective property tax rate $\tau_{eff,i,j}$ for a particular property $i$ in county $j$ is the following equation:
 
 $$
-\tau_{eff,i} = \frac{L_i}{FMV_i}
+\tau_{eff,i,j} = \frac{L_{i,j}}{FMV_{i,j}} \quad\text{for all}\quad i,j
+$$
+
+The effective property tax rate might differ from the statutory tax rate for a number of reasons, many of which are present in Georgia property tax policy.
+- Different property tax juridictions add taxes on top of each other.
+- Property tax rates vary within counties and across counties.
+- Different taxable assessed values might apply to different industries and to residential versus commercial properties.
+- Business tangible personal property might have different exemptions based on industry.
+- Business properties might be assessed more aggressively and more often than residential properties.
+
+Given these issues, the most reliable way to calculate an average effective property tax rate $\tau_{avg,eff,j}$ with in a county $j$ is usually to add up all the property tax levies ($\sum_i L_{i,j}$) and add up all the fair market values of the properties ($\sum_i FMV_{i,j}$).
+
+$$
+\tau_{avg,eff,j} = \frac{\sum_i L_{i,j}}{\sum_i FMV_{i,j}} \quad\text{for all}\quad j
 $$
 
 given county is equal to... [TODO: the total property taxes levied divided by the fair market value]
