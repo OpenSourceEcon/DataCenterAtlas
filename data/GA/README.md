@@ -7,7 +7,13 @@ The University of Georgia Institute of Government found that "local jurisdiction
 
 Most residences in Georgia can qualify for and receive the homestead exemption, which is a $2,000 deduction from the assessed taxable value of the property. Residents over the age of 65 can get a $4,000 deduction from their assessed taxable value. There are some other smaller exemptions for residents under the homestead exemption. See Georgia Department of Revenue's "[Property Tax Homestead Exemptions](https://dor.georgia.gov/property-tax-homestead-exemptions)" page, accessed June 17, 2026. We estimate that this reduces residential property assessed taxable values to 39% of fair market value, a one-percentage-point decrease from the 40% ratio without the exemption.
 
-The average effective property tax rate for a given county is equal to... [TODO: the total property taxes levied divided by the fair market value]
+Let $L_i$ be the property tax liability for a particular property $i$, and let $FMV_i$ be the fair market value of that property. The effective property tax rate $\tau_{eff,i}$ for a particular property $i$ is the following equation:
+
+$$
+\tau_{eff,i} = \frac{L_i}{FMV_i}
+$$
+
+given county is equal to... [TODO: the total property taxes levied divided by the fair market value]
 
 We calculate the total taxes levied by county from the "[`2025 Summary of Ad Valorem Taxes Levied Report.pdf`](https://dor.georgia.gov/document/document/2025-summary-ad-valorem-taxes-levied-reportpdf/download)", which we have also stored as [`2025 Summary of Ad Valorem Taxes Levied Report.pdf`](https://github.com/OpenSourceEcon/DataCenterAtlas/blob/main/data/GA/2025%20Summary%20of%20Ad%20Valorem%20Taxes%20Levied%20Report.pdf) in this directory of the open source GitHub repository for the DataCenterAtlas.org web tool. We extracted the data from this PDF table using ChatGPT (see [this thread](https://chatgpt.com/share/6a32ee08-9950-83ea-9bff-2a3e7a19ab2a)), saving the output as [`/data/GA/county_tot_levies_ga_2025.csv`](https://github.com/OpenSourceEcon/DataCenterAtlas/blob/main/data/GA/county_tot_levies_ga_2025.csv).
 
