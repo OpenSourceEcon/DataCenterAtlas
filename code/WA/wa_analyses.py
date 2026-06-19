@@ -21,13 +21,22 @@ images_dir = os.path.join(proj_dir, "images", "WA")
 # /data/WA/Table_27_2025.xlsx file
 cnty_tax_df = pd.read_excel(
     os.path.join(data_dir, "Table_27_2025.xlsx"),
-    names=["county_name", "avg_eff_prop_tax_rate"],
+    names=["county_name", "avg_eff_prop_tax_pct_2025"],
     sheet_name="Effective Rates",
     header=1,
     usecols="A,P",
     nrows=39,  # Remove statewide average row from the end
-    dtype={"county_name": str, "avg_eff_prop_tax_rate_2025": np.float32}
+    dtype={"county_name": str, "avg_eff_prop_tax_pct_2025": np.float32}
 )
+# Create avg_eff_prop_tax_rate column as avg_eff_prop_tax_pct_2025 / 100 and
+# reorder the columns to "county_name", "avg_eff_prop_tax_rate_2025",
+# "avg_eff_prop_tax_pct_2025"
+cnty_tax_df["avg_eff_prop_tax_rate_2025"] = (
+    cnty_tax_df["avg_eff_prop_tax_pct_2025"] / 100
+)
+cnty_tax_df = cnty_tax_df[
+    ["county_name", "avg_eff_prop_tax_rate_2025", "avg_eff_prop_tax_pct_2025"]
+]
 print("DETAILS FOR cnty_tax_df")
 print(cnty_tax_df.dtypes)
 print(cnty_tax_df.keys())
