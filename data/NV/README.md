@@ -30,7 +30,7 @@ $$
 $FMV_i$ is the fair market value for county $i$, $ExempRatio_i$ is the ratio of total county-$i$ valuations before exemptions to total valuations after exemptions, and $AssessValue_i$ is the final assessed blue including net proceeeds projection. We calculate the $ExempRatio_i$ using the statewide total assessed valuation by property classes before examptions and after exemptions from the two tables on page 72 of the State of Nevada Department of Taxation "[Annual Report: Fiscal Year 2025 (2024-2025)](https://tax.nv.gov/wp-content/uploads/2026/01/FY25_AnnualReport_FINAL.pdf)", Jan. 2026. Our computed values of total property fair market value by county $FMV_i$ represents the denominator in our calculation of average effective property tax rates by county $i$.
 
 $$
-\tau{avg,eff,i} = \frac{PropTaxRev_i}{FMV_i} \quad\text{for all}\quad i
+\tau_{avg,eff,i} = \frac{PropTaxRev_i}{FMV_i} \quad\text{for all}\quad i
 $$
 
 We use the table "Assessed Valuation by Counties after Exemptions" FY 2024-25 variable (p. 72) from the State of Nevada Department of Taxation "[Annual Report: Fiscal Year 2025 (2024-2025)](https://tax.nv.gov/wp-content/uploads/2026/01/FY25_AnnualReport_FINAL.pdf)", Jan. 2026, to get baseline after-exemption valuation totals for each county. Then we use the percent difference between the total row from the table "Assessed Valuation by Property Classes before Exemptions" versus the total row from the "Assessed Valuation by Counties after Exemptions" to get the average percent increase to get to fair market value. We increase the valuation totals by county from the "Assessed Valuation by Counties after Exemptions" by this percentage to get assessed valuation by county before exemption.
