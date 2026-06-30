@@ -14,3 +14,9 @@ Put instructions here for replicating the analyses.
 - Create the `ME-DataCtrCostRev` virtual environment using Python's `uv` package. This is similar to a Docker image. It creates an environment of packages and versions on which the Python scripts are known and tested to run correctly across operating systems.
     - [TODO: Put `uv` instructions here]
 - In your Terminal or Anaconda prompt and with the `ME-DataCtrCostRev` virtual environment activated, run the [`ME_DataCtrCostRev.py`](ME_DataCtrCostRev.py) script by typing: `run ME_DataCtrCostRev.py`. -->
+
+## Dimensions on which state and county property taxes differ
+- Some states have a state property tax, in addition to county and local property taxes (e.g., Vermont, Kansas, and Alabama). But most states property taxes are the sum of county, local, and special jurisdiction taxes.
+- Some states include business tangible personal property (TPP) in the property tax base.
+- Some states have specific data center business property tax incentives (e.g., Nevada)
+- Some states have assessment ratios less than 100% that vary by industry and vary by residential vs. commercial
